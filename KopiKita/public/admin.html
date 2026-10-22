@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Admin KopiKita</title>
+<style>
+*{box-sizing:border-box}body{font-family:Poppins,system-ui,sans-serif;background:#0d0a08;color:#fff;margin:0;padding:1.5rem;max-width:980px;margin:auto}
+h1 span{color:#b6895b}input,select,button{font:inherit;padding:.5rem .8rem;border-radius:.4rem;border:1px solid #3a2c20;background:#1a1410;color:#fff}
+button{background:#b6895b;border:0;cursor:pointer}.row{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1rem}.stats div,.o{background:#1a1410;border:1px solid #3a2c20;border-radius:.8rem;padding:1rem}
+.stats b{display:block;font-size:1.4rem;color:#b6895b}.o{margin-bottom:.7rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+small{color:#aaa}details{margin-top:1rem}summary{cursor:pointer}.m{display:flex;justify-content:space-between;padding:.3rem 0;border-bottom:1px solid #2a2018}
+</style></head><body>
+<h1>Admin Kopi<span>Kita</span></h1>
+<div class="row"><input id="tk" type="password" placeholder="Token admin"><button id="go">Masuk</button><select id="flt"><option value="">Semua status</option><option>baru</option><option>diproses</option><option>selesai</option><option>batal</option></select></div>
+<div id="err" style="color:#ff8a80"></div>
+<div class="stats" id="st"></div><div id="ol"></div>
+<details><summary>Ketersediaan menu</summary><div id="ml"></div></details>
+<script>
+const $=s=>document.querySelector(s),rp=n=>"Rp"+n.toLocaleString("id-ID"),esc=s=>String(s).replace(/[&<>"']/g,c=>"&#"+c.charCodeAt(0)+";");
+const api=async(p,o={})=>{const r=await fetch("/api/admin/"+p,{...o,headers:{Authorization:"Bearer "+$("#tk").value,"Content-Type":"application/json"}});const d=await r.json();if(!r.ok)throw new Error(d.error);return d};
+async function load(){try{$("#err").textContent="";
+ const [s,o,m]=await Promise.all([api("stats"),api("orders"),api("menu")]);
+ $("#st").innerHTML=`<div><b>${s.orders}</b>Pesanan</div><div><b>${rp(s.revenue)}</b>Pendapatan</div><div><b>${s.top[0]?esc(s.top[0].name):"-"}</b>Terlaris</div>`;
+ const f=$("#flt").value;
+ $("#ol").innerHTML=o.filter(x=>!f||x.status===f).map(x=>`<div class="o"><div><b>${esc(x.code)}</b> · ${esc(x.buyer)}<br><small>${x.created_at} UTC</small><br>${x.items.map(i=>`${i.qty}x ${esc(i.name)}${i.size?" ("+i.size+")":""}`).join(", ")}</div>
+ <div style="text-align:right"><b>${rp(x.total)}</b><br><select data-o="${x.id}">${["baru","diproses","selesai","batal"].map(t=>`<option${t===x.status?" selected":""}>${t}</option>`).join("")}</select></div></div>`).join("")||"<small>Belum ada pesanan.</small>";
+ $("#ml").innerHTML=m.map(x=>`<div class="m"><span>${esc(x.category)} · ${esc(x.name)}</span><input type="checkbox" data-m="${x.id}"${x.available?" checked":""}></div>`).join("")}catch(e){$("#err").textContent=e.message}}
+document.addEventListener("change",async e=>{const t=e.target;
+ if(t.dataset.o)await api("orders/"+t.dataset.o,{method:"PATCH",body:JSON.stringify({status:t.value})}).then(load).catch(x=>$("#err").textContent=x.message);
+ else if(t.dataset.m)await api("menu/"+t.dataset.m,{method:"PATCH",body:JSON.stringify({available:t.checked})}).catch(x=>$("#err").textContent=x.message);
+ else if(t.id==="flt")load()});
+$("#go").onclick=load;setInterval(()=>$("#tk").value&&load(),30000);
+</script></body></html>

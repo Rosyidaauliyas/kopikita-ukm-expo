@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KopiKita. | UKM Kependudukan UNESA – UKM Expo 2025</title>
+<meta name="description" content="KopiKita, kedai kopi UKM Kependudukan Universitas Negeri Surabaya di UKM Expo 25–28 Agustus 2025. Lihat menu dan hitung pesananmu." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/feather-icons"></script>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<nav class="navbar">
+  <a href="#home" class="logo">Kopi<span>Kita</span>.</a>
+  <div class="nav-links" id="nav-links">
+    <a href="#home">Home</a><a href="#about">Tentang</a><a href="#event">Event</a><a href="#menu">Menu</a><a href="#contact">Kontak</a>
+  </div>
+  <div class="nav-extra">
+    <button id="search-btn" aria-label="Cari menu"><i data-feather="search"></i></button>
+    <button id="cart-btn" aria-label="Keranjang"><i data-feather="shopping-cart"></i><b id="cart-count">0</b></button>
+    <button id="burger" aria-label="Menu"><i data-feather="menu"></i></button>
+  </div>
+  <div class="search-bar" id="search-bar">
+    <input type="search" id="search-box" placeholder="Cari menu, mis. taro, kopi, nutella..." />
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-inner reveal">
+    <span class="badge"><i data-feather="calendar"></i> UKM Expo UNESA · 25–28 Agustus 2025</span>
+    <h1>Selamat Datang di Kedai <span>KopiKita</span></h1>
+    <p>Kopi, cokelat, dan teh yang dibuat sepenuh hati oleh UKM Kependudukan Universitas Negeri Surabaya. Harga mahasiswa, rasa tidak murahan.</p>
+    <div class="cta-row"><a href="#menu" class="cta">Lihat Menu</a><a href="#event" class="cta ghost">Info Event</a></div>
+  </div>
+  <div class="stats">
+    <div><b>4</b><span>Hari Expo</span></div>
+    <div><b>7</b><span>Kategori</span></div>
+    <div><b>27</b><span>Pilihan Menu</span></div>
+    <div><b>Rp10k</b><span>Harga Mulai</span></div>
+  </div>
+</header>
+
+<section id="about" class="sec about">
+  <h2 class="reveal"><span>Tentang</span> Kami</h2>
+  <div class="row">
+    <figure class="reveal"><img src="img/about.jpg" alt="Tim UKM Kependudukan UNESA berfoto di booth KopiKita" loading="lazy" /><figcaption>Tim UKM Kependudukan UNESA di booth</figcaption></figure>
+    <div class="reveal">
+      <h3>Kenapa memilih KopiKita?</h3>
+      <p>KopiKita adalah kedai minuman binaan <b>UKM Kependudukan UNESA</b> yang menyajikan kopi, cokelat, dan teh dengan cita rasa khas untuk para mahasiswa dan pengunjung UKM Expo.</p>
+      <p>Kami memilih bahan terbaik dan menjaga harga tetap terjangkau, karena minuman enak seharusnya bisa dinikmati semua orang.</p>
+      <ul class="feat">
+        <li><i data-feather="coffee"></i><div><b>Racikan Segar</b>Dibuat saat dipesan.</div></li>
+        <li><i data-feather="tag"></i><div><b>Ramah di Kantong</b>Mulai dari Rp10.000.</div></li>
+        <li><i data-feather="sliders"></i><div><b>Bebas Pilih</b>Ukuran M/L dan 5 topping.</div></li>
+        <li><i data-feather="users"></i><div><b>Dikelola Mahasiswa</b>Hasil kerja tim UKM.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="event" class="sec event">
+  <h2 class="reveal"><span>UKM</span> Expo 2025</h2>
+  <p class="sub reveal">KopiKita hadir mewakili UKM Kependudukan di UKM Expo Universitas Negeri Surabaya.</p>
+  <div class="cards">
+    <div class="card reveal"><i data-feather="calendar"></i><h4>Tanggal</h4><p>25–28 Agustus 2025<br />(4 hari)</p></div>
+    <div class="card reveal"><i data-feather="map-pin"></i><h4>Lokasi</h4><p>Universitas Negeri Surabaya, Surabaya</p></div>
+    <div class="card reveal"><i data-feather="users"></i><h4>Penyelenggara</h4><p>UKM Kependudukan UNESA</p></div>
+    <div class="card reveal"><i data-feather="shopping-bag"></i><h4>Yang Dijual</h4><p>Minuman dingin, panas, topping, dan snack</p></div>
+  </div>
+  <div class="steps">
+    <div class="reveal"><b>1</b>Pilih menu favoritmu</div>
+    <div class="reveal"><b>2</b>Tentukan ukuran &amp; topping</div>
+    <div class="reveal"><b>3</b>Kirim pesanan lewat WhatsApp</div>
+  </div>
+</section>
+
+<section id="menu" class="sec menu">
+  <h2 class="reveal"><span>Menu</span> Kami</h2>
+  <p class="sub reveal">Pilih ukuran, tambahkan ke keranjang, dan lihat total pesananmu. M = Medium, L = Large.</p>
+  <div class="tabs" id="tabs"></div>
+  <div class="grid" id="menu-grid"></div>
+  <p class="empty" id="empty" hidden>Menu tidak ditemukan.</p>
+  <h3 class="gal-title">Menu Cetak</h3>
+  <div class="gallery">
+    <img src="img/menu1.jpg" alt="Daftar menu halaman 1" loading="lazy" data-zoom />
+    <img src="img/menu2.jpg" alt="Daftar menu halaman 2" loading="lazy" data-zoom />
+  </div>
+</section>
+
+<section id="contact" class="sec contact">
+  <h2 class="reveal"><span>Kontak</span> Kami</h2>
+  <p class="sub reveal">Ada pertanyaan atau mau pesan dalam jumlah banyak? Pesanmu akan dikirim lewat WhatsApp.</p>
+  <div class="row box">
+    <iframe class="map" title="Lokasi UNESA" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Universitas+Negeri+Surabaya+Ketintang&amp;output=embed"></iframe>
+    <form id="form" novalidate>
+      <label class="ig"><i data-feather="user"></i><input name="nama" type="text" placeholder="Nama" required /></label>
+      <label class="ig"><i data-feather="mail"></i><input name="email" type="email" placeholder="Email" required /></label>
+      <label class="ig"><i data-feather="message-square"></i><textarea name="pesan" rows="3" placeholder="Pesan" required></textarea></label>
+      <button type="submit" class="cta">Kirim via WhatsApp</button>
+      <p id="form-msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="socials"><a href="#" aria-label="Instagram"><i data-feather="instagram"></i></a><a href="#" aria-label="Facebook"><i data-feather="facebook"></i></a><a href="https://wa.me/6285765658888" target="_blank" rel="noopener" aria-label="WhatsApp"><i data-feather="message-circle"></i></a></div>
+  <div class="links"><a href="#home">Home</a><a href="#about">Tentang</a><a href="#event">Event</a><a href="#menu">Menu</a><a href="#contact">Kontak</a></div>
+  <p class="credit">UKM Kependudukan UNESA · UKM Expo 25–28 Agustus 2025<br />Dikembangkan oleh <a href="https://portofolio-rosyida-salsabila.netlify.app" target="_blank" rel="noopener">Rosyida Auliya Salsabila</a> · &copy; 2025</p>
+</footer>
+
+<aside class="drawer" id="drawer" aria-label="Keranjang">
+  <div class="d-head"><h3>Pesananmu</h3><button id="close-cart" aria-label="Tutup"><i data-feather="x"></i></button></div>
+  <ul id="cart-list"></ul>
+  <div class="d-foot">
+    <div class="total"><span>Total</span><b id="total">Rp0</b></div>
+    <input id="buyer" type="text" placeholder="Nama pemesan" />
+    <button class="cta" id="wa-order"><i data-feather="send"></i> Pesan via WhatsApp</button>
+    <button class="link" id="clear-cart">Kosongkan</button>
+  </div>
+</aside>
+<div class="lightbox" id="lightbox"><img alt="" /></div>
+<div class="toast" id="toast"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# KopiKita (Fullstack)
+# KopiKita
 Website kedai KopiKita, UKM Kependudukan UNESA – UKM Expo 25–28 Agustus 2025.
 
 **Stack:** HTML/CSS/JavaScript (frontend) · Node.js `http` (backend REST API, tanpa dependency) · SQLite via `node:sqlite` (database).

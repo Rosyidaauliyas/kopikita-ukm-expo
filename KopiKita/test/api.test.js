@@ -17,7 +17,11 @@ before(async () => {
   await new Promise((ok, no) => { server.stdout.on("data", (d) => String(d).includes("jalan") && ok()); server.on("exit", no); });
   menu = (await (await call("/api/menu")).json()).flatMap((c) => c.i); // [nama, M, L, id]
 });
-after(() => { server.kill(); for (const s of ["", "-wal", "-shm"]) fs.rmSync(DB + s, { force: true }); });
+after(async () => {
+  server.kill();
+  await new Promise((ok) => (server.exitCode !== null ? ok() : server.once("exit", ok))); // tunggu server mati dulu (Windows mengunci file DB)
+  for (const s of ["", "-wal", "-shm"]) { try { fs.rmSync(DB + s, { force: true }); } catch {} } // gagal hapus file sementara bukan alasan tes gagal
+});
 
 test("GET /api/menu mengembalikan 27 item dari database", () => assert.equal(menu.length, 27));
 

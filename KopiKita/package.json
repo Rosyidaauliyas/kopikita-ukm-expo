@@ -1,1 +1,13 @@
-{"name":"kopikita","version":"2.0.0","description":"KopiKita - UKM Kependudukan UNESA, UKM Expo 2025","main":"server.js","scripts":{"start":"node server.js"},"engines":{"node":">=22.13"}}
+{
+  "name": "kopikita",
+  "version": "2.0.0",
+  "description": "KopiKita - UKM Kependudukan UNESA, UKM Expo 2025",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/api.test.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}
